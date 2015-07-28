@@ -1,33 +1,49 @@
 package org.inno;
 
-import java.util.function.Consumer;
-
 /**
  * Created by kitsu.
  * This file is part of BattleShip in package org.inno.
  */
 public abstract class Player {
 
-    protected Sea self;
-    protected Sea enemy;
+    public static final int SEA_SIZE = 10;
+    
+    protected Sea self = new Sea(SEA_SIZE);
 
-    {
-        for (int i = 0; i < Ship.BATTLESHIP_NUM; i++)
-            if (!self.addShip(this.placeShip(ShipType.BATTLESHIP)))
-                i--;
-        for (int i = 0; i < Ship.FRIGATE_NUM; i++)
-            if (!self.addShip(this.placeShip(ShipType.FRIGATE)))
-                i--;
-        for (int i = 0; i < Ship.CRUISER_NUM; i++)
-            if (!self.addShip(this.placeShip(ShipType.CRUISER)))
-                i--;
-        for (int i = 0; i < Ship.BOAT_NUM; i++)
-            if (self.addShip(this.placeShip(ShipType.BOAT)))
-                i--;
+    public static final int LEFT;
+    static {
+        int t = 0;
+        for (ShipType type : ShipType.values())
+            t += type.getNum() * type.getSize();
+        LEFT = t;
     }
 
-    public abstract void move(Consumer consumer);
+    private int left = LEFT;
 
-    public abstract Ship placeShip(ShipType ship);
+    protected static void init(Player p) {
+        for (ShipType type : ShipType.values())
+            for (int i = 0; i < type.getNum(); i++)
+                if (!p.self.addShip(p.placeShip(type))) {
+                    i--;
+                    Console.notifyErrorPlacement();
+                } else {
+                    Console.notifyGoodPlacement(p.self::getCell, SEA_SIZE);
+                }
+    }
+
+    public abstract Coord move();
+
+    public final boolean destroy(Coord c) {
+        boolean f = self.shoot(c.x, c.y);
+        if (f)
+            left--;
+        return isLoosed();
+    }
+
+    public boolean isLoosed() {
+        return left <= 0;
+    }
+
+    protected abstract Ship placeShip(ShipType ship);
 
 }

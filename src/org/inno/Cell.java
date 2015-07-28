@@ -6,14 +6,20 @@ package org.inno;
  */
 
 public enum Cell {
-    EMPTY,
-    SHIP,
+    EMPTY('.'),
+    SHIP('@'),
     /**
      * Destroyed ship [part]
      */
-    BURN,
+    BURN('^'),
     /**
      * Missed cell
      */
-    SHOT
+    SHOT('*');
+
+    public final char sym;
+
+    Cell(char sym) {
+        this.sym = sym;
+    }
 }

@@ -6,11 +6,6 @@ package org.inno;
  */
 public class Ship {
 
-    public static final int BATTLESHIP_NUM = 1;
-    public static final int FRIGATE_NUM = 2;
-    public static final int CRUISER_NUM = 3;
-    public static final int BOAT_NUM = 4;
-
     private final ShipType type;
 
     private final int x;
