@@ -9,6 +9,7 @@ public abstract class Player {
     public static final int SEA_SIZE = 10;
     
     protected Sea self = new Sea(SEA_SIZE);
+    protected Sea enemy = new Sea(SEA_SIZE);
 
     public static final int LEFT;
     static {

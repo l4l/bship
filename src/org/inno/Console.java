@@ -26,7 +26,7 @@ public final class Console {
         for (int i = 0; i < size; i++) {
             printBorderSym();
             for (int j = 0; j < size; j++) {
-                System.out.print(f.getCell(i, j).sym);
+                System.out.print(f.getCell(j, i).sym);
             }
             printBorderSym();
             System.out.println();
@@ -53,7 +53,7 @@ public final class Console {
     }
 
     public static void notifyGoodPlacement(Cellable<Integer, Cell> f, int size) {
-        out.println("Well done!\nCurrent map is:\n\n");
+        out.println("Well done!\n\nCurrent map is:\n");
         printMap(f, size);
     }
 

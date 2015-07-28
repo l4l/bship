@@ -6,7 +6,7 @@ package org.inno;
  */
 public class Main {
     static Player player1 = new PlayerHuman();
-    static Player player2 = new PlayerHuman();
+    static Player player2 = new PlayerAIStupid();
 
     static {
         Player.init(player1);

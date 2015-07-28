@@ -13,12 +13,6 @@ public class PlayerHuman extends Player {
     }
 
     @Override
-    public boolean destroy(Coord c) {
-        self.shoot(c.x, c.y);
-        return super.destroy(c);
-    }
-
-    @Override
     protected Ship placeShip(ShipType ship) {
         Console.greetingToPlaceShip(ship);
         Coord s = Console.readCoord();

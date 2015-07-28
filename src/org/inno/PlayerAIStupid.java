@@ -9,8 +9,12 @@ import java.util.Random;
 public class PlayerAIStupid extends Player {
     @Override
     public Coord move() {
-
-        return null;
+        Coord c;
+        Random r = new Random();
+        do {
+            c = new Coord(r.nextInt() % SEA_SIZE, r.nextInt() % SEA_SIZE);
+        } while (enemy.getCell(c.x, c.y) != Cell.EMPTY);
+        return c;
     }
 
     @Override

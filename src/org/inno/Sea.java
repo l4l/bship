@@ -1,7 +1,5 @@
 package org.inno;
 
-import jdk.nashorn.internal.objects.annotations.Function;
-
 /**
  * Created by kitsu.
  * This file is part of BattleShip in package org.inno.
