@@ -13,11 +13,6 @@ public class Main {
     static Player player1 = new PlayerHuman();
     static Player player2 = new PlayerAIStupid();
 
-    static {
-        Player.init(player1);
-        Player.init(player2);
-    }
-
     public static void main(String[] args) {
 
         do {

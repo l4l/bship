@@ -11,6 +11,9 @@ import org.inno.game.ShipType;
  */
 public class PlayerHuman extends Player {
 
+    public PlayerHuman() {
+        init(this);
+    }
 
     @Override
     public Coord move() {

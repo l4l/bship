@@ -12,6 +12,11 @@ import java.util.Random;
  * This file is part of BattleShip in package org.inno.
  */
 public class PlayerAIStupid extends Player {
+
+    public PlayerAIStupid() {
+        init(this);
+    }
+
     @Override
     public Coord move() {
         Coord c;

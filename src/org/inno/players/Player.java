@@ -24,7 +24,7 @@ public abstract class Player {
 
     private int left = LEFT;
 
-    public static void init(Player p) {
+    protected static void init(Player p) {
         for (ShipType type : ShipType.values())
             for (int i = 0; i < type.getNum(); i++)
                 if (!p.self.addShip(p.placeShip(type))) {
