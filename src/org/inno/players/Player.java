@@ -1,4 +1,7 @@
-package org.inno;
+package org.inno.players;
+
+import org.inno.*;
+import org.inno.game.*;
 
 /**
  * Created by kitsu.
@@ -21,7 +24,7 @@ public abstract class Player {
 
     private int left = LEFT;
 
-    protected static void init(Player p) {
+    public static void init(Player p) {
         for (ShipType type : ShipType.values())
             for (int i = 0; i < type.getNum(); i++)
                 if (!p.self.addShip(p.placeShip(type))) {
@@ -30,6 +33,10 @@ public abstract class Player {
                 } else {
                     Console.notifyGoodPlacement(p.self::getCell, SEA_SIZE);
                 }
+    }
+
+    public void setEnemyMap(Coord c, Cell cell) {
+
     }
 
     public abstract Coord move();

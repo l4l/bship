@@ -1,5 +1,10 @@
 package org.inno;
 
+import org.inno.game.Coord;
+import org.inno.players.Player;
+import org.inno.players.PlayerAIStupid;
+import org.inno.players.PlayerHuman;
+
 /**
  * Created by kitsu.
  * This file is part of BattleShip in package org.inno.

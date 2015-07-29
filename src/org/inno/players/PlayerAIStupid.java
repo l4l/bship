@@ -1,4 +1,9 @@
-package org.inno;
+package org.inno.players;
+
+import org.inno.game.Cell;
+import org.inno.game.Coord;
+import org.inno.game.Ship;
+import org.inno.game.ShipType;
 
 import java.util.Random;
 

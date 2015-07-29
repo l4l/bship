@@ -1,4 +1,4 @@
-package org.inno;
+package org.inno.game;
 
 /**
  * Created by kitsu.

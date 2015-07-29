@@ -1,5 +1,10 @@
 package org.inno;
 
+import org.inno.game.Cell;
+import org.inno.game.Cellable;
+import org.inno.game.Coord;
+import org.inno.game.ShipType;
+
 import java.io.PrintStream;
 import java.util.Scanner;
 
