@@ -27,6 +27,7 @@ public class Main {
 
     public static boolean move(Player p1, Player p2) {
         Coord c = p1.move();
+        p1.setEnemyCell(c, p2.getSelfCell(c.x, c.y));
         return p2.destroy(c);
     }
 }

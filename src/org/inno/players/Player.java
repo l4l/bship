@@ -8,11 +8,9 @@ import org.inno.game.*;
  * This file is part of BattleShip in package org.inno.
  */
 public abstract class Player {
-
-    public static final int SEA_SIZE = 10;
     
-    protected Sea self = new Sea(SEA_SIZE);
-    protected Sea enemy = new Sea(SEA_SIZE);
+    protected Sea self = new Sea();
+    protected EnemySea enemy = new EnemySea();
 
     public static final int LEFT;
     static {
@@ -31,15 +29,25 @@ public abstract class Player {
                     i--;
                     Console.notifyErrorPlacement();
                 } else {
-                    Console.notifyGoodPlacement(p.self::getCell, SEA_SIZE);
+                    Console.notifyGoodPlacement(p.self::getCell, Sea.SEA_DEFAULT_SIZE);
                 }
     }
 
-    public void setEnemyMap(Coord c, Cell cell) {
+    public abstract Coord move();
 
+    protected abstract Ship placeShip(ShipType ship);
+
+    public final void setEnemyCell(Coord c, Cell cell) {
+        //TODO
     }
 
-    public abstract Coord move();
+    public Cell getSelfCell(int i, int j) {
+        return self.getCell(i, j);
+    }
+
+    public void setEnemyCell(int i, int j, Cell cell) {
+        enemy.setCell(i, j, cell);
+    }
 
     public final boolean destroy(Coord c) {
         boolean f = self.shoot(c.x, c.y);
@@ -51,7 +59,5 @@ public abstract class Player {
     public boolean isLoosed() {
         return left <= 0;
     }
-
-    protected abstract Ship placeShip(ShipType ship);
 
 }

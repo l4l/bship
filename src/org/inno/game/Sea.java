@@ -7,9 +7,15 @@ package org.inno.game;
 public class Sea implements Cellable<Integer, Cell> {
 
     private final int size;
-    private Cell[][] map;
+    protected Cell[][] map;
 
-    public Sea(int size) {
+    public static final int SEA_DEFAULT_SIZE = 10;
+
+    public Sea() {
+        this(SEA_DEFAULT_SIZE);
+    }
+
+    protected Sea(int size) {
         this.size = size;
         map = new Cell[this.size][this.size];
         for (int i = 0; i < size; i++)
@@ -23,7 +29,7 @@ public class Sea implements Cellable<Integer, Cell> {
      * @param ship to check
      * @return true if can place it
      */
-    public boolean placeable(Ship ship) {
+    public final boolean placeable(Ship ship) {
         int x = ship.getX();
         int y = ship.getY();
         ShipType type = ship.getType();
@@ -71,7 +77,7 @@ public class Sea implements Cellable<Integer, Cell> {
         return !(isExist(x, y) && map[x][y] == Cell.SHIP);
     }
 
-    private boolean isExist(int x, int y) {
+    protected boolean isExist(int x, int y) {
         return !(x < 0 || y < 0 || x >= size || y >= size);
     }
 
@@ -81,7 +87,7 @@ public class Sea implements Cellable<Integer, Cell> {
      * @param ship to place
      * @return true if placed
      */
-    public boolean addShip(Ship ship) {
+    public final boolean addShip(Ship ship) {
 
         int x = ship.getX();
         int y = ship.getY();
@@ -106,14 +112,14 @@ public class Sea implements Cellable<Integer, Cell> {
         return true;
     }
 
-    public Cell getCell(Integer x, Integer y) {
+    public final Cell getCell(Integer x, Integer y) {
         if (isExist(x, y))
             return map[x][y];
         else
             return null;
     }
 
-    public boolean shoot(int x, int y) {
+    public final boolean shoot(int x, int y) {
         if (map[x][y] == Cell.SHIP) {
             map[x][y] = Cell.BURN;
             return true;
