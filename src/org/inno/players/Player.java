@@ -1,7 +1,7 @@
 package org.inno.players;
 
-import org.inno.*;
 import org.inno.game.*;
+import org.inno.util.Console;
 
 /**
  * Created by kitsu.
@@ -40,7 +40,7 @@ public abstract class Player {
                     i--;
                     if (print) Console.notifyErrorPlacement();
                 } else {
-                    if (print) Console.notifyGoodPlacement(p.self::getCell, Sea.SEA_DEFAULT_SIZE);
+                    if (print) Console.notifyGoodPlacement(p.self::getCell);
                 }
             }
         }
@@ -61,12 +61,16 @@ public abstract class Player {
      */
     protected abstract Ship placeShip(ShipType ship);
 
-    public final void setEnemyCell(Coord c, Cell cell) {
-        //TODO
-    }
-
     public Cell getSelfCell(int i, int j) {
         return self.getCell(i, j);
+    }
+
+    public Cell getEnemyCell(int i, int j) {
+        return enemy.getCell(i, j);
+    }
+
+    public final void setEnemyCell(Coord c, Cell cell) {
+        setEnemyCell(c.x, c.y, cell);
     }
 
     public void setEnemyCell(int i, int j, Cell cell) {
@@ -75,13 +79,13 @@ public abstract class Player {
 
     /**
      * @param c coordinate where enemy shoot
-     * @return true if current player have no more ships left
+     * @return true if shot was successful
      */
     public final boolean destroy(Coord c) {
         boolean f = self.shoot(c.x, c.y);
         if (f)
             left--;
-        return isLoosed();
+        return f;
     }
 
     public boolean isLoosed() {

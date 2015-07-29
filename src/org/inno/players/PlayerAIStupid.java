@@ -25,8 +25,8 @@ public class PlayerAIStupid extends PlayerAI {
         Ship p;
         Random r = new Random();
         do {
-            p = new Ship(ship, r.nextInt() % Sea.SEA_DEFAULT_SIZE, r.nextInt() % Sea.SEA_DEFAULT_SIZE, r.nextBoolean());
-        } while (self.placeable(p));
+            p = new Ship(ship, Math.abs(r.nextInt()) % Sea.SEA_DEFAULT_SIZE, Math.abs(r.nextInt()) % Sea.SEA_DEFAULT_SIZE, r.nextBoolean());
+        } while (!self.placeable(p));
         return p;
     }
 }
