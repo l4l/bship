@@ -2,6 +2,7 @@ package org.inno.players;
 
 import org.inno.Console;
 import org.inno.game.Coord;
+import org.inno.game.Sea;
 import org.inno.game.Ship;
 import org.inno.game.ShipType;
 
@@ -12,7 +13,7 @@ import org.inno.game.ShipType;
 public class PlayerHuman extends Player {
 
     public PlayerHuman() {
-        init(this);
+        init(this, true);
     }
 
     @Override

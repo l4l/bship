@@ -17,6 +17,10 @@ public enum Cell {
      */
     SHOT('*');
 
+    /**
+     * Symbol for outputing
+     */
+    @Deprecated
     public final char sym;
 
     Cell(char sym) {

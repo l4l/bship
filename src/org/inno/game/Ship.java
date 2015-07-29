@@ -11,6 +11,11 @@ public class Ship {
     private final int x;
     private final int y;
 
+    /**
+     * Type of placement of the ship.<br>
+     * True means from up-to-down placement<br>
+     * False means from left-to-right placement
+     */
     private final boolean isDown;
 
     /**

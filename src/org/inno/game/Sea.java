@@ -15,6 +15,9 @@ public class Sea implements Cellable<Integer, Cell> {
         this(SEA_DEFAULT_SIZE);
     }
 
+    /**
+     * @param size of the maps
+     */
     protected Sea(int size) {
         this.size = size;
         map = new Cell[this.size][this.size];
@@ -112,6 +115,11 @@ public class Sea implements Cellable<Integer, Cell> {
         return true;
     }
 
+    /**
+     * @param x coordinate
+     * @param y coordinate
+     * @return {@link Cell} which is placed at specified coordinate
+     */
     public final Cell getCell(Integer x, Integer y) {
         if (isExist(x, y))
             return map[x][y];
@@ -119,6 +127,13 @@ public class Sea implements Cellable<Integer, Cell> {
             return null;
     }
 
+    /**
+     * Perform a shoot to specified cell
+     *
+     * @param x coordinate
+     * @param y coordinate
+     * @return true if shoot was successful
+     */
     public final boolean shoot(int x, int y) {
         if (map[x][y] == Cell.SHIP) {
             map[x][y] = Cell.BURN;
