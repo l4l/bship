@@ -62,7 +62,7 @@ public final class Console {
 
     public boolean readPlacement() {
         out.println("Should your ship placed up-to-down or left-to-right? U/L");
-        return in.next().toUpperCase().equals("U");
+        return in.next().toUpperCase().equals("L");
     }
 
     public boolean readMissed() {

@@ -13,23 +13,23 @@ public class Ship {
 
     /**
      * Type of placement of the ship.<br>
-     * True means from up-to-down placement<br>
-     * False means from left-to-right placement
+     * True means from left-to-right placement<br>
+     * False means from up-to-down placement
      */
-    private final boolean isVertical;
+    private final boolean isHorizontal;
 
     /**
      * @param type of the ship
      * @param x start coordinate
      * @param y start coordinate
-     * @param isVertical if true it placed from (x0, y0) to (x0, y0+size)<br>
+     * @param isHorizontal if true it placed from (x0, y0) to (x0, y0+size)<br>
      *               else placed from (x0, y0) to (x0+size, y0)
      */
-    public Ship(ShipType type, int x, int y, boolean isVertical) {
+    public Ship(ShipType type, int x, int y, boolean isHorizontal) {
         this.type = type;
         this.x = x;
         this.y = y;
-        this.isVertical = isVertical;
+        this.isHorizontal = isHorizontal;
     }
 
 //    public boolean isHere(int x, int y) {
@@ -52,7 +52,7 @@ public class Ship {
         return y;
     }
 
-    public boolean isVertical() {
-        return isVertical;
+    public boolean isHorizontal() {
+        return isHorizontal;
     }
 }
