@@ -45,13 +45,13 @@ public class Game implements java.io.Serializable {
     public void run() throws Exception {
 
         do {
-            do Console.printMaps(player1::getSelfCell, player1::getEnemyCell);
+            do Console.getInstace().printMaps(player1::getSelfCell, player1::getEnemyCell);
 //            do Console.printMap(player1::getEnemyCell);
             while (move(player1, player2));
             while (move(player2, player1));
         } while (!player1.isLoosed() && !player2.isLoosed());
 
-        Console.notifyWinner(player1.isLoosed());
+        Console.getInstace().notifyWinner(player1.isLoosed());
     }
 
     public boolean move(Player p1, Player p2) throws Exception {
@@ -65,7 +65,7 @@ public class Game implements java.io.Serializable {
         Cell cell = p2.getSelfCell(c.x, c.y) == Cell.SHIP ? Cell.BURN : Cell.SHOT;
         p1.setEnemyCell(c, cell);
         boolean isMissed = p2.destroy(c);
-        Console.printMove(c, isMissed);
+        Console.getInstace().printMove(c, isMissed);
         return isMissed;
     }
 

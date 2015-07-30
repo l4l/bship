@@ -43,9 +43,9 @@ public abstract class Player implements java.io.Serializable {
             for (int i = 0; i < type.getNum(); i++) {
                 if (!p.self.addShip(p.placeShip(type))) {
                     i--;
-                    if (print) Console.notifyErrorPlacement();
+                    if (print) Console.getInstace().notifyErrorPlacement();
                 } else {
-                    if (print) Console.notifyGoodPlacement(p.self::getCell);
+                    if (print) Console.getInstace().notifyGoodPlacement(p.self::getCell);
                 }
             }
         }

@@ -19,15 +19,15 @@ public class PlayerHuman extends Player {
 
     @Override
     public Coord move() {
-        return Console.readCoord();
+        return Console.getInstace().readCoord();
     }
 
     @Override
     protected Ship placeShip(ShipType ship) {
-        Console.greetingToPlaceShip(ship);
-        Coord s = Console.readCoord();
+        Console.getInstace().greetingToPlaceShip(ship);
+        Coord s = Console.getInstace().readCoord();
 
-        boolean placement = ship == ShipType.BOAT || Console.readPlacement();
+        boolean placement = ship == ShipType.BOAT || Console.getInstace().readPlacement();
         return new Ship(ship, s.x, s.y, placement);
     }
 

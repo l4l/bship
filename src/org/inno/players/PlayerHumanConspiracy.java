@@ -15,6 +15,6 @@ public class PlayerHumanConspiracy extends PlayerHuman {
 
     @Override
     public Cell getSelfCell(int i, int j) {
-        return Console.readMissed() ? Cell.SHOT : Cell.BURN;
+        return Console.getInstace().readMissed() ? Cell.SHOT : Cell.BURN;
     }
 }
