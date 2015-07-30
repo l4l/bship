@@ -6,6 +6,7 @@ import org.inno.players.Player;
 import org.inno.players.PlayerAIStupid;
 import org.inno.players.PlayerHuman;
 import org.inno.util.Console;
+import org.inno.util.SerializerManager;
 
 /**
  * Created by kitsu.
@@ -14,6 +15,8 @@ import org.inno.util.Console;
 public class Game implements java.io.Serializable {
     Player player1;
     Player player2;
+
+    private static Game game;
 
     public Game() {
         player1 = new PlayerHuman();
@@ -26,10 +29,20 @@ public class Game implements java.io.Serializable {
     }
 
     public static void main(String[] args) {
-        new Game().run();
+        game = new Game();
+        boolean cont;
+        do {
+            cont = false;
+            try {
+                game.run();
+            } catch (Exception e) {
+                cont = true;
+            }
+        } while (cont);
+
     }
 
-    public void run() {
+    public void run() throws Exception {
 
         do {
             do Console.printMaps(player1::getSelfCell, player1::getEnemyCell);
@@ -41,8 +54,14 @@ public class Game implements java.io.Serializable {
         Console.notifyWinner(player1.isLoosed());
     }
 
-    public boolean move(Player p1, Player p2) {
+    public boolean move(Player p1, Player p2) throws Exception {
         Coord c = p1.move();
+        if (c.x == -1 && c.y == -1)
+            SerializerManager.save(this, "save.dat");
+        else if (c.x == -2 && c.y == -1) {
+            game = SerializerManager.restore("save.dat");
+            throw new Exception("Restoring");
+        }
         Cell cell = p2.getSelfCell(c.x, c.y) == Cell.SHIP ? Cell.BURN : Cell.SHOT;
         p1.setEnemyCell(c, cell);
         boolean isMissed = p2.destroy(c);

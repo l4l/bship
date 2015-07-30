@@ -4,7 +4,7 @@ package org.inno.game;
  * Created by kitsu.
  * This file is part of BattleShip in package org.inno.
  */
-public class Sea implements Cellable<Integer, Cell> {
+public class Sea implements Cellable<Integer, Cell>, java.io.Serializable {
 
     private final int size;
     protected Cell[][] map;

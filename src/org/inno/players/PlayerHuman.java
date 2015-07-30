@@ -26,7 +26,9 @@ public class PlayerHuman extends Player {
     protected Ship placeShip(ShipType ship) {
         Console.greetingToPlaceShip(ship);
         Coord s = Console.readCoord();
-        return new Ship(ship, s.x, s.y, Console.readPlacement());
+
+        boolean placement = ship == ShipType.BOAT || Console.readPlacement();
+        return new Ship(ship, s.x, s.y, placement);
     }
 
 }

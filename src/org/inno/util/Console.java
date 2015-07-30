@@ -90,6 +90,10 @@ public final class Console {
     public static Coord readCoord() {
         out.println("Write down the coordinate");
         String s = in.next();
+        if (s.charAt(0) == 's')
+            return new Coord(-1, -1);
+        else if(s.charAt(0) == 'l')
+            return new Coord(-2, -2);
         int x, y;
         for (x = 0; x < LEFT_BORDER.length; x++) {
             if (LEFT_BORDER[x] == s.charAt(0))

@@ -17,11 +17,6 @@ public abstract class Player implements java.io.Serializable {
         enemy = new EnemySea();
     }
 
-    Player(Cell[][] self, Cell[][] enemy) {
-        this.self = new Sea(self);
-        this.enemy = new EnemySea(enemy);
-    }
-
     /**
      * Number of {@link Cell}s at the {@link Sea} that represent ships
      */
@@ -100,10 +95,6 @@ public abstract class Player implements java.io.Serializable {
 
     public boolean isLoosed() {
         return left <= 0;
-    }
-
-    public Player createPlayer(PlayerType type, Cell[][] self, Cell[][] enemy) {
-        return type.createPlayer(self, enemy);
     }
 
 }
