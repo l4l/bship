@@ -7,10 +7,20 @@ import org.inno.util.Console;
  * Created by kitsu.
  * This file is part of BattleShip in package org.inno.
  */
-public abstract class Player {
+public abstract class Player implements java.io.Serializable {
     
-    protected Sea self = new Sea();
-    protected EnemySea enemy = new EnemySea();
+    protected Sea self;
+    protected EnemySea enemy;
+
+    Player() {
+        self = new Sea();
+        enemy = new EnemySea();
+    }
+
+    Player(Cell[][] self, Cell[][] enemy) {
+        this.self = new Sea(self);
+        this.enemy = new EnemySea(enemy);
+    }
 
     /**
      * Number of {@link Cell}s at the {@link Sea} that represent ships
@@ -90,6 +100,10 @@ public abstract class Player {
 
     public boolean isLoosed() {
         return left <= 0;
+    }
+
+    public Player createPlayer(PlayerType type, Cell[][] self, Cell[][] enemy) {
+        return type.createPlayer(self, enemy);
     }
 
 }

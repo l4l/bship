@@ -16,20 +16,20 @@ public class Ship {
      * True means from up-to-down placement<br>
      * False means from left-to-right placement
      */
-    private final boolean isDown;
+    private final boolean isVertical;
 
     /**
      * @param type of the ship
      * @param x start coordinate
      * @param y start coordinate
-     * @param isDown if true it placed from (x0, y0) to (x0, y0+size)<br>
+     * @param isVertical if true it placed from (x0, y0) to (x0, y0+size)<br>
      *               else placed from (x0, y0) to (x0+size, y0)
      */
-    public Ship(ShipType type, int x, int y, boolean isDown) {
+    public Ship(ShipType type, int x, int y, boolean isVertical) {
         this.type = type;
         this.x = x;
         this.y = y;
-        this.isDown = isDown;
+        this.isVertical = isVertical;
     }
 
 //    public boolean isHere(int x, int y) {
@@ -52,7 +52,7 @@ public class Ship {
         return y;
     }
 
-    public boolean isDown() {
-        return isDown;
+    public boolean isVertical() {
+        return isVertical;
     }
 }

@@ -15,7 +15,9 @@ public class PlayerAIStupid extends PlayerAI {
         Coord c;
         Random r = new Random();
         do {
-            c = new Coord(r.nextInt() % Sea.SEA_DEFAULT_SIZE, r.nextInt() % Sea.SEA_DEFAULT_SIZE);
+            int x = r.nextInt() % Sea.SEA_DEFAULT_SIZE;
+            int y = r.nextInt() % Sea.SEA_DEFAULT_SIZE;
+            c = new Coord(x, y);
         } while (enemy.getCell(c.x, c.y) != Cell.EMPTY);
         return c;
     }
@@ -25,7 +27,9 @@ public class PlayerAIStupid extends PlayerAI {
         Ship p;
         Random r = new Random();
         do {
-            p = new Ship(ship, Math.abs(r.nextInt()) % Sea.SEA_DEFAULT_SIZE, Math.abs(r.nextInt()) % Sea.SEA_DEFAULT_SIZE, r.nextBoolean());
+            int x = Math.abs(r.nextInt()) % Sea.SEA_DEFAULT_SIZE;
+            int y = Math.abs(r.nextInt()) % Sea.SEA_DEFAULT_SIZE;
+            p = new Ship(ship, x, y, r.nextBoolean());
         } while (!self.placeable(p));
         return p;
     }

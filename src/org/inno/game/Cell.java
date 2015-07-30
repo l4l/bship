@@ -5,7 +5,7 @@ package org.inno.game;
  * This file is part of BattleShip in package org.inno.
  */
 
-public enum Cell {
+public enum Cell implements java.io.Serializable {
     EMPTY('.'),
     SHIP('@'),
     /**

@@ -15,10 +15,26 @@ public final class Console {
     private final static PrintStream out = System.out;
     private final static Scanner in = new Scanner(System.in);
 
-    private static void printBorder(int size) {
-        for (int i = 0; i < size; i++)
+    private final static char[] LEFT_BORDER = new char[]{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'K'};
+
+    private static void printLeftBorder(int line) {
+        out.print(LEFT_BORDER[line]);
+    }
+
+    private static void printBorderDouble(int delimSize) {
+        printBorder();
+        delimSize -= 2;
+        while (delimSize-- > 0)
             printBorderSym();
-        out.println();
+        printBorder();
+    }
+
+    private static void printBorder() {
+        printBorderSym();
+        for (int i = 0; i < Sea.SEA_DEFAULT_SIZE; i++) {
+            out.print(i);
+        }
+        printBorderSym();
     }
 
     private static void printBorderSym() {
@@ -26,30 +42,38 @@ public final class Console {
     }
 
     public static void printMaps(Cellable<Integer, Cell> p1, Cellable<Integer, Cell> p2) {
+        if (p1 == null || p2 == null)
+            return;
         out.println("Playing map is:\n");
         final String space = " || ";
-        printBorder(2*Sea.SEA_DEFAULT_SIZE + space.length() + 2);
+        printBorderDouble(space.length());
+        out.println();
         for (int i = 0; i < Sea.SEA_DEFAULT_SIZE; i++) {
-            printBorderSym();
+            printLeftBorder(i);
             printLine(p1, i);
             out.print(space);
             printLine(p2, i);
-            printBorderSym();
+            printLeftBorder(i);
             out.println();
         }
-        printBorder(2*Sea.SEA_DEFAULT_SIZE + 6);
+        printBorderDouble(space.length());
+        out.println();
     }
 
     public static void printMap(Cellable<Integer, Cell> f) {
+        if (f == null)
+            return;
         out.println("Current map is:\n");
-        printBorder(Sea.SEA_DEFAULT_SIZE + 2);
+        printBorder();
+        out.println();
         for (int i = 0; i < Sea.SEA_DEFAULT_SIZE; i++) {
-            printBorderSym();
+            printLeftBorder(i);
             printLine(f, i);
-            printBorderSym();
+            printLeftBorder(i);
             out.println();
         }
-        printBorder(Sea.SEA_DEFAULT_SIZE + 2);
+        printBorder();
+        out.println();
         out.println('\n');
     }
 
@@ -64,8 +88,17 @@ public final class Console {
     }
 
     public static Coord readCoord() {
-        out.println("Print coordinates x and y");
-        return new Coord(in.nextInt(), in.nextInt());
+        out.println("Write down the coordinate");
+        String s = in.next();
+        int x, y;
+        for (x = 0; x < LEFT_BORDER.length; x++) {
+            if (LEFT_BORDER[x] == s.charAt(0))
+                break;
+        }
+        x = x == LEFT_BORDER.length ? 0 : x;
+        y = s.charAt(1) - '0';
+        y = y < 0 || y >= Sea.SEA_DEFAULT_SIZE ? 0 : y;
+        return new Coord(x, y);
     }
 
     public static boolean readPlacement() {
@@ -75,7 +108,7 @@ public final class Console {
 
     public static void printMove(Coord c, boolean b) {
         out.println("Move is:");
-        out.println("X: " + c.x + " Y: " + c.y);
+        out.println(LEFT_BORDER[c.x] + "" + c.y);
         out.println("Result is: " + (b ? "success" : "missed"));
     }
 
