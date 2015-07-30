@@ -20,7 +20,6 @@ public enum Cell implements java.io.Serializable {
     /**
      * Symbol for outputting
      */
-    @Deprecated
     public final char sym;
 
     Cell(char sym) {

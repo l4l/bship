@@ -15,13 +15,6 @@ public class Sea implements Cellable<Integer, Cell>, java.io.Serializable {
         this(SEA_DEFAULT_SIZE);
     }
 
-    public Sea(Cell[][] map) {
-        size = map.length;
-        for (int i = 0; i < size; i++) {
-            System.arraycopy(map[i], 0, this.map[i], 0, size);
-        }
-    }
-
     /**
      * @param size of the maps
      */
@@ -43,7 +36,7 @@ public class Sea implements Cellable<Integer, Cell>, java.io.Serializable {
         int x = ship.getX();
         int y = ship.getY();
         ShipType type = ship.getType();
-        if (ship.isVertical()) {
+        if (ship.isHorizontal()) {
             return placeable(x, y, x, y + type.getSize() - 1);
         } else {
             return placeable(x, y, x + type.getSize() - 1, y);
@@ -108,7 +101,7 @@ public class Sea implements Cellable<Integer, Cell>, java.io.Serializable {
         int yEnd = y;
 
         int size = ship.getType().getSize();
-        if (ship.isVertical()) {
+        if (ship.isHorizontal()) {
             yEnd += size - 1;
         } else {
             xEnd += size - 1;

@@ -10,10 +10,6 @@ public class EnemySea extends Sea {
         super();
     }
 
-    public EnemySea(Cell[][] m) {
-        super(m);
-    }
-
     /**
      * @param i coordinate(the same as x)
      * @param j coordinate(the same as y)
